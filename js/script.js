@@ -22,52 +22,66 @@ const monthNamesPL = [
   "listopad",
   "grudzień"
 ];
-
-const displayDate = () => {
-  const year = date.getFullYear();
-  const month = date.getMonth();
-  const day = date.getDate();
-  const dayWord = date.getDay();
-
-  const displayYear = (document.getElementById("year").innerHTML = year);
-  const displayMonth = (document.getElementById("month").innerHTML = month + 1);
-  const displayDay = (document.getElementById("day").innerHTML = day);
-  const displayDayWord = document.getElementById('dayWord').innerHTML = dayNamesPL[dayWord];
-};
-window.onload = displayDate();
-
-const dateControl = {
-  addDay: function() {
+const changeDateBy = {
+  addDay: () => {
     date.setDate(date.getDate() + 1);
   },
-  subDay: function() {
+  subDay: () => {
     date.setDate(date.getDate() - 1);
   },
-  addMonth: function() {
+  addMonth: () => {
     date.setMonth(date.getMonth() + 1);
   },
-  subMonth: function() {
+  subMonth: () => {
     date.setMonth(date.getMonth() - 1);
   },
-  addYear: function() {
+  addYear: () => {
     date.setFullYear(date.getFullYear() + 1);
   },
-  subYear: function() {
+  subYear: () => {
     date.setFullYear(date.getFullYear() - 1);
   }
 };
 
-const buttonHandler = () => {
-  const action = event.target.getAttribute("data-action");
-  console.log(action);
+const init = () => {
+  window.onload = displayDate();
+};
+const changeDatebuttons = document.querySelectorAll(".callendarPage button");
+changeDatebuttons.forEach(element => {
+  addEventListener("click", buttonHandler);
+});
+
+
+
+function displayDate() {
+  let year = date.getFullYear();
+  let month = date.getMonth();
+  let day = date.getDate();
+  let dayWord = date.getDay();
+
+  let displayYear = (document.getElementById("year").innerHTML = year);
+  let displayMonth = (document.getElementById("month").innerHTML =
+    monthNamesPL[month]);
+  let displayDay = (document.getElementById("day").innerHTML = day);
+  let displayDayWord = (document.getElementById("dayWord").innerHTML =
+    dayNamesPL[dayWord]);
+
+    dayDisplayColor(dayWord);
+}
+
+function buttonHandler() {
+  let action = event.target.getAttribute("data-action");
+  console.debug(action);
   if (action === null) {
     return;
   }
-  dateControl[action]();
+  changeDateBy[action]();
   displayDate();
-};
+}
 
-buttons = document.querySelectorAll(".callendarPage button");
-buttons.forEach(element => {
-  addEventListener("click", buttonHandler);
-});
+function dayDisplayColor(day) {
+    dayClass = document.getElementById('day').classList
+    day === 0 ? dayClass.add('red') : dayClass.remove('red')
+}
+
+init();

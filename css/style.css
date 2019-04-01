@@ -1,16 +1,23 @@
-
-
-.callendarPage {
-    border: 1px solid rgb(71, 71, 71);
-    border-radius: 15px;
-    height: 650px;
-    margin: 120px auto 0;
-    width:400px;
+body {
+  font-family: "Libre Baskerville", serif;
 }
-
+.callendarPage {
+  border: 1px solid rgb(71, 71, 71);
+  border-radius: 15px;
+  height: 650px;
+  margin: 120px auto 0;
+  width: 400px;
+}
 span {
-    display: inline-block;
+  display: inline-block;
 }
 button {
-    display: inline-block;
+  display: inline-block;
+}
+
+.black {
+    color: black;
+}
+.red {
+    color: red;
 }
